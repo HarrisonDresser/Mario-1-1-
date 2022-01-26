@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Ground
   - Qblock
+  - Coin
+  - Goomba
+  - GoombaDie
   layers:
   - Default
   - TransparentFX

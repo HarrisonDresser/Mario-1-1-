@@ -26,5 +26,7 @@ public class Goomba_Controller : MonoBehaviour
             position.x = position.x + Time.deltaTime * speed * direction;
             rigidbody2D.MovePosition(position);
         }
+          
     }
+
 }
