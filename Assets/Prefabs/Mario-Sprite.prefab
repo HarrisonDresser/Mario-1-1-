@@ -1,5 +1,65 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &19553499
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 19553500}
+  m_Layer: 0
+  m_Name: Feetpos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &19553500
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 19553499}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.468, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8657888072364030508}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1451159489
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1451159490}
+  m_Layer: 0
+  m_Name: Ceiling check
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1451159490
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451159489}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.373, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8657888072364030508}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8657888072364030506
 GameObject:
   m_ObjectHideFlags: 0
@@ -15,6 +75,7 @@ GameObject:
   - component: {fileID: 8657888072364030509}
   - component: {fileID: 1438033322751660208}
   - component: {fileID: 1667583262}
+  - component: {fileID: 1667583256}
   m_Layer: 0
   m_Name: Mario-Sprite
   m_TagString: Player
@@ -32,7 +93,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.0973, y: -0.229, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1451159490}
+  - {fileID: 19553500}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -102,11 +165,11 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1.7
+  m_GravityScale: 1.5
   m_Material: {fileID: 6200000, guid: d8ac2763ad1992a4bbd5c978f1bc560c, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &8657888072364030510
 BoxCollider2D:
@@ -121,7 +184,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.028265715, y: -0.051180363}
+  m_Offset: {x: -0.023535252, y: -0.051180363}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -132,7 +195,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6934686, y: 0.8304062}
+  m_Size: {x: 0.6177883, y: 0.8304062}
   m_EdgeRadius: 0
 --- !u!114 &8657888072364030509
 MonoBehaviour:
@@ -146,8 +209,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5339b00a8f5af34b8374db54219de78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
-  score: {fileID: 0}
+  goombaController: {fileID: 0}
+  speed: 6
+  jumpForce: 7
+  velocity: {x: 0, y: 0}
+  feetPos: {fileID: 19553500}
+  checkRadius: 0.3
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 64
+  headPos: {fileID: 1451159490}
+  WhatIsCeiling:
+    serializedVersion: 2
+    m_Bits: 0
+  jumpTime: 0.6
+  fallMultiplier: 5
+  lowJumpMultipler: 5
+  animator: {fileID: 1438033322751660208}
+  livesCount: 0
+  marioSmall: 0
 --- !u!95 &1438033322751660208
 Animator:
   serializedVersion: 3
@@ -179,3 +259,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 347439177e2e72c45b6514c008beff3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1667583256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8657888072364030506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcd3f243d701c2545b81eaea82a90c8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinCount: 0
