@@ -27,6 +27,8 @@ public class MarioScript : MonoBehaviour
     public float checkRadius;
     public LayerMask whatIsGround;
 
+    public LayerMask wallMask;
+
     public Transform headPos;
     public LayerMask WhatIsCeiling;
 
@@ -40,14 +42,14 @@ public class MarioScript : MonoBehaviour
     public float lowJumpMultipler;
 
     //SPRITES
-    public SpriteRenderer spriteRenderer;
-    public Sprite marioDeathSprite;
+    //public SpriteRenderer spriteRenderer;
+    //public Sprite marioDeathSprite;
 
 
 
 
     //public Text score;
-    //private int scoreValue = 0;
+    private int scoreValue = 0;
     public Animator animator;
     //public float hozMovement;
     //public float verMovement;
@@ -58,12 +60,16 @@ public class MarioScript : MonoBehaviour
     //LIVES COMPONETS 
     private int maxLives = 3;
     public int livesCount;
-    // private bool marioAlive;
+    public bool marioAlive;
 
-    //bool jump = false;
+   
+    //SCORE COMPONETS
+    
 
-    //SUPER MARIO VARIABLES
-    public bool marioSmall;
+    //HEALTH / SUPER MARIO VARIABLES    
+    public int maxHealth = 2; 
+    public int health;               //{ get {return currentHealth;} }
+    //int currentHealth; //Dead = 0, smallMario = 1, SuperMario = 2 
 
 
     //UI COIN DISPLAY AND LIVES
@@ -77,19 +83,45 @@ public class MarioScript : MonoBehaviour
     void Start()
     {
         //CALLED METHODS
-        //goombaController.GoombaDeath();
         rd2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
-        //lives.text = "Lives "+ livesValue.ToString();
-        livesCount = maxLives;
-        marioSmall = true;
+        //SET COUNTER AT START - LIVES, HEALTH, SCORE,TIME
+        //SetcountText();
 
+
+        //void SetCount()
+       // {
+           //countText.text = "Count: count.ToString();
+           //if (count >= 20)
+           //{
+                //winTextObject.SetActive(true);
+           //}
+       // }
+
+
+
+
+
+        animator.SetBool("MarioDeath", false);
+        //GAMESTART STATS
+        health = 1; 
+        scoreValue = 0;
+        livesCount = maxLives;
+
+
+
+        //lives.text = "Lives "+ livesValue.ToString();
+        //Debug.Log();
+        Debug.Log(health);
+        //if(livesCount > 0 )
+        //{
+
+        //}
         //score.text = scoreValue.ToString();
     }
     void Update()
     {
-        Animation();
         //Debug.Log(Input.GetAxis("Horizontal"));
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsGround);
         /////TURN TOWARDS GO
@@ -152,7 +184,6 @@ public class MarioScript : MonoBehaviour
         PlayerMovement();
         //Debug.Log(jumpTimeCounter);
         //Debug.Log(isGrounded);
-        //Debug.Log(marioAlive);
        // Debug.Log(isGrounded); //True & False
         //Debug.Log(isJumping);  //false
         //Debug.Log(verInput);
@@ -184,23 +215,21 @@ public class MarioScript : MonoBehaviour
         {
             animator.SetBool("isRunning", true);
         }
-
-
-        //if (rd2d.velocity.y > 0)
-        //{
-            //animator.SetBool("Jump", true)
-        //}
-        //if (rd2d.velocity.y = 0)
-        //{
-            //animator.SetBool("Jump", false)
-        //}
-
-
-        //MOVEMENT ANIMATORS
-        //animator.SetFloat("MoveX", hozMovement);
-        //animator.SetFloat("MoveY", verMovement);
     }
 
+    //RAY CASTING SETUPPPPPPPPP
+   // Vector3 CheckWallRays (Vector3 pos, float direction)
+    //{  //        pos.x = center of player - direction is either 1 or -1 - 
+       // Vector2 originTop = new Vector2 (pos.x + direction * .4f, pos.y + 1f -0.2f);
+        //Vector2 originMiddle = new Vector2(pos.x + direction * .4f, pos.y);
+       // Vector2 originBottom = new Vector2 (pos.x + direction * .4f, pos.y - 1f + 0.2f);
+
+        //RaycastHit2D wallTop = Physics2D. Raycast (originTop, new Vector2 (direction, 0), velocity.x * Time.deltaTime, wallMask);
+    //}
+
+
+
+    // Player -> Tag Collision Detection
     private void OnCollisionStay2D(Collision2D collision)
     {
        
@@ -214,21 +243,33 @@ public class MarioScript : MonoBehaviour
             isGrounded = false;
         }
         
-
-        if (collision.collider.tag == "Goomba")
+        //GOOMB STOMPP - calls goomba death animation and score count
+        if (collision.gameObject.CompareTag("Goomba"))
         {
-            rd2d.AddForce(new Vector2(0, 3), ForceMode2D.Impulse);
+            rd2d.AddForce(new Vector2(0, 8), ForceMode2D.Impulse);
+            collision.gameObject.SetActive(false);
+            goombaController.GoombaDeath();
+
+            SetScore();
             //goombaController.GoombaDeath()
         }
+
+        //Goomba Killing Mario 
         if(collision.collider.tag == "GoombaDie")
         {
+            if (health == 1)
+            {
+            ChangeHealth();
+            }
+            //else (marioSize == 2)
+           // {
+               // marioAlive = true;
+           // }
             //goombaController.GoombaDeath()
             //if (marioSmall = true)
             //{
-            //MarioDeath();
             //}
-            livesCount.ToString();
-            LivesChange();
+            //livesCount.ToString();
             //Debug.Log(livesCount);
         }
        
@@ -238,26 +279,50 @@ public class MarioScript : MonoBehaviour
         //}
     }
 
-    public void LivesChange()
+   
+
+
+
+    public void ChangeHealth()
     {
-
-        if (livesCount >= 0) 
+        if (health > 0) 
         {
-            livesCount -= 1;
+            health = health - 1;
         }
-        else 
+        if (health == 0)
         {
-            //HardRestart();
+            MarioDeath();
         }
-
         //if (livesValue <= 0)
         //{
             //Destroy(player);
         //}
-
-         Debug.Log(livesCount);
+         Debug.Log(health);
     }
 
+    public void ChangeLives() //Called when mario takes damage
+    {
+        //if (lives < 0)
+        //{
+       // MarioDeath();
+       // }
+       
+    }
+
+    public void MarioDeath()
+    {
+        //animator.SetBool("Dead", true);
+        animator.SetBool("MarioDeath", true);
+        //rd2d.constraints = Rigidbody2DConstraints.FreezePostion;
+        //Destroy(player);
+
+    }
+
+    public void SetScore()
+    {
+        scoreValue = scoreValue + 100; 
+        Debug.Log(scoreValue);
+    }
 
     public void HardRestart()
     {
@@ -267,20 +332,7 @@ public class MarioScript : MonoBehaviour
 
     public void SoftReset()
     {
-
+        health = 1;
     }
 
-    //public void MarioDeath()
-    //}
-        //freeze gamestate
-       // Debug.Log("maxLives");
-        //call SoftRestart()
-    //}
-
-    void Animation()
-    {
-       // animator.SetFloat("MoveX", hozMovement);
-        //animator.SetFloat("MoveY", verMovement);
-    }
-  
 }

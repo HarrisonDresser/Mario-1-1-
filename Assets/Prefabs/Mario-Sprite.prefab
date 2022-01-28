@@ -184,7 +184,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.023535252, y: -0.051180363}
+  m_Offset: {x: -0.02642107, y: -0.0507015}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -195,7 +195,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6177883, y: 0.8304062}
+  m_Size: {x: 0.6472206, y: 0.8313639}
   m_EdgeRadius: 0
 --- !u!114 &8657888072364030509
 MonoBehaviour:
@@ -227,7 +227,9 @@ MonoBehaviour:
   lowJumpMultipler: 5
   animator: {fileID: 1438033322751660208}
   livesCount: 0
-  marioSmall: 0
+  marioAlive: 0
+  maxHealth: 2
+  health: 0
 --- !u!95 &1438033322751660208
 Animator:
   serializedVersion: 3

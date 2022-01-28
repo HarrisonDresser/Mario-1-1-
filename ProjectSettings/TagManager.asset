@@ -10,6 +10,7 @@ TagManager:
   - Goomba
   - GoombaDie
   - GoombaDamage
+  - CameraMove
   layers:
   - Default
   - TransparentFX

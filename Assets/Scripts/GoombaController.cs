@@ -24,7 +24,7 @@ public class GoombaController : MonoBehaviour
     void Start()
     {
         //spriteRenderer = GameObject.GetComponent<SpriteRenderer>();
-        //marioScript.LivesChange();
+        //marioScript.ChangeLives();
         rd = GetComponent<Rigidbody2D>();
         startTime = Time.time;
         journeyLength = Vector3.Distance(startMarker.position, endMarker.position);
@@ -38,13 +38,12 @@ public class GoombaController : MonoBehaviour
      }
 
 
-    private void OnCollisionStay2D(Collision2D collision)
+    public void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.collider.tag == "Player")
         {
-        //LivesChange();
-      //lives.text = "lives " + livesValue.ToString();
-        //}
+        //ChangeLives();
+        //lives.text = "lives " + livesValue.ToString();
         }
 
     }
@@ -59,8 +58,9 @@ public class GoombaController : MonoBehaviour
 
     public void GoombaDeath()
     {
-        //spriteRenderer.sprite = deathSprite;
+        spriteRenderer.sprite = deathSprite;
         Debug.Log("method called");
+
         //Destroy(GetComponent<Rigidbody2D)();
         //Destroy(gameObject, 1);
     }

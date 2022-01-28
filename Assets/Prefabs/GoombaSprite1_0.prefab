@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 594055056}
   - component: {fileID: 594055057}
   - component: {fileID: 500081400582413314}
+  - component: {fileID: 6936576579193460139}
   m_Layer: 0
   m_Name: GoombaDamage
-  m_TagString: GoombaDamage
+  m_TagString: GoombaDie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,7 +46,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0068888664, y: -0.096536994}
+  m_Offset: {x: -0.00031089783, y: -0.04922664}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -56,7 +57,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.90355587, y: 0.42446303}
+  m_Size: {x: 0.92840004, y: 0.51908374}
   m_EdgeRadius: 0
 --- !u!114 &500081400582413314
 MonoBehaviour:
@@ -72,10 +73,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startMarker: {fileID: 0}
   endMarker: {fileID: 0}
-  speed: 1
+  speed: 3
   spriteRenderer: {fileID: 6597298453514521850}
   deathSprite: {fileID: 3129186650607056963, guid: a291317934d1173448e6b0a408934552, type: 3}
   marioScript: {fileID: 0}
+--- !u!50 &6936576579193460139
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 594055055}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &498811554381837522
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,7 +238,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0013446808, y: 0.15762746}
+  m_Offset: {x: -0.0013446808, y: 0.2397492}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -227,7 +249,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.46873665, y: 0.03991294}
+  m_Size: {x: 0.49728775, y: 0.068390846}
   m_EdgeRadius: 0
 --- !u!114 &7800920113032284215
 MonoBehaviour:
