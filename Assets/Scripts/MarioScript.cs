@@ -18,7 +18,7 @@ public class MarioScript : MonoBehaviour
     private float moveInput; 
     private float verInput;
     
-    private bool walk, walk_left, walk_right, jump;
+    //private bool walk, walk_left, walk_right, jump;
     public Vector2 velocity; 
 
     //PLAYER MASKS
@@ -60,7 +60,7 @@ public class MarioScript : MonoBehaviour
     //LIVES COMPONETS 
     private int maxLives = 3;
     public int livesCount;
-    public bool marioAlive;
+    //public bool marioAlive;
 
    
     //SCORE COMPONETS
@@ -244,22 +244,30 @@ public class MarioScript : MonoBehaviour
         }
         
         //GOOMB STOMPP - calls goomba death animation and score count
-        if (collision.gameObject.CompareTag("Goomba"))
+        if (collision.gameObject.CompareTag("GoombaStomp"))
         {
             rd2d.AddForce(new Vector2(0, 8), ForceMode2D.Impulse);
             collision.gameObject.SetActive(false);
-            goombaController.GoombaDeath();
-
+            Debug.Log("StompWork");
+            //GoombaController goombaControllerObject = collision.gameObject.GetComponent<GoombaController>();
             SetScore();
-            //goombaController.GoombaDeath()
+            //collision.GetComponent<GoombaController>().GoombaDeath();
+
+
+            ////CALLING FUNCTION FROM GOOMBA CONTROLLER SCRIPT 
+            goombaController.GoombaDeath();
+            
         }
 
-        //Goomba Killing Mario 
-        if(collision.collider.tag == "GoombaDie")
+
+        //MARIO COLLIDING WITH GOOMBA - TRIGGERS CHANGE HEALTH
+        if(collision.collider.tag == "GoombaDamage")
         {
+            // CHECKS MARIOS HEALTH if he is in small form, trigger death and chagne health
             if (health == 1)
             {
-            ChangeHealth();
+                MarioDeath();
+                ChangeHealth();
             }
             //else (marioSize == 2)
            // {
@@ -279,9 +287,31 @@ public class MarioScript : MonoBehaviour
         //}
     }
 
+
+/*
+
+    public void OnTriggerEnter2D (Collider2D collider)
+    {
+        if (collider.transform.CompareTag("GoombaStomp"))
+        {
+
+            //rd2d.AddForce(new Vector2(0, 8), ForceMode2D.Impulse);
+
+            //collider.GetComponent<GoombaController>().GoombaDeath();
+
+            //MAKE GOOMBA DISAPERA collider.gameObject.SetActive(false);
+
+            Debug.Log("StompWork");
+        }
+
+        //CALLING FUNCTION FROM GOOMBA CONTROLLER SCRIPT 
+        //goombaController.GoombaDeath();
+        //SetScore();
+        
+    }
    
 
-
+*/
 
     public void ChangeHealth()
     {
@@ -313,7 +343,11 @@ public class MarioScript : MonoBehaviour
     {
         //animator.SetBool("Dead", true);
         animator.SetBool("MarioDeath", true);
-        //rd2d.constraints = Rigidbody2DConstraints.FreezePostion;
+        //rd2d.constraints = RigidbodyConstraints2D.FreezePostion;
+        if (livesCount > 0)
+        {
+            //SoftReset();
+        }
         //Destroy(player);
 
     }

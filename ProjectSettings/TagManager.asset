@@ -8,9 +8,9 @@ TagManager:
   - Qblock
   - Coin
   - Goomba
-  - GoombaDie
   - GoombaDamage
   - CameraMove
+  - GoombaStomp
   layers:
   - Default
   - TransparentFX

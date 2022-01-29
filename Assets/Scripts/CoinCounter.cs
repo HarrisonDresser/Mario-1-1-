@@ -10,9 +10,6 @@ public class CoinCounter : MonoBehaviour
     {
         Debug.Log("Count: " + coinCount);
     }
-
-
-
     public void AddCoin()
     {
         coinCount += 1;

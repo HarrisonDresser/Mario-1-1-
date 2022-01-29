@@ -19,8 +19,6 @@ public class GoombaController : MonoBehaviour
     //METHODS CALLED 
     public MarioScript marioScript;
 
-
-
     void Start()
     {
         //spriteRenderer = GameObject.GetComponent<SpriteRenderer>();
@@ -38,28 +36,44 @@ public class GoombaController : MonoBehaviour
      }
 
 
+
     public void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.collider.tag == "Player")
+        MarioScript player = collision.gameObject.GetComponent<MarioScript>();
+
+        if (player != null)
         {
-        //ChangeLives();
-        //lives.text = "lives " + livesValue.ToString();
+           //Debug.Log("Player Hit by Goomba");
+           //collision.gameObject.SetActive(false);
+           
+           // NEEDS TO CALL CHANGE HEALTH gameObject.GetComponent<MarioScript>().ChangeHealth();
         }
 
+        //if (collision.transform.CompareTag("Player"))
+        //{
+           // collision.gameObject.SetActive(false);
+            //collision.GetComponent<MarioScript>().ChangeHealth();
+            //ChangeLives();
+            //lives.text = "lives " + livesValue.ToString();
+       // }
     }
+
 
 
     public void GoombaDamage()
     {
-        //Destroy(GetComponent<Rigidbody2D)();
         //Debug.Log("method called");
     }
 
 
     public void GoombaDeath()
     {
-        spriteRenderer.sprite = deathSprite;
-        Debug.Log("method called");
+        Debug.Log("GoombDied");
+        //spriteRenderer.sprite = deathSprite;
+        //GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+
+        Destroy(gameObject, 1);
+        //Debug.Log("method called");
 
         //Destroy(GetComponent<Rigidbody2D)();
         //Destroy(gameObject, 1);

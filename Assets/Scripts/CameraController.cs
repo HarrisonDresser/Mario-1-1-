@@ -30,7 +30,7 @@ public class CameraController : MonoBehaviour
         }
         if (target.transform.position.x > 193f)
         {
-            Debug.Log("End");
+            Debug.Log("Read");
             transform.position = new Vector3(end.transform.position.x, 3f, -10);
         }
          //if(target.transform.position.x > -3f && target.transform.position.x < 200f)
