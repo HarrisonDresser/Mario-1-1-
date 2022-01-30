@@ -13,6 +13,11 @@ public class BlockDestroy : MonoBehaviour
  
     // Start is called before the first frame update
      public Animator animator;
+    private MarioScript player;
+
+
+
+
      //public bool blockHit;
     
 
@@ -20,7 +25,7 @@ public class BlockDestroy : MonoBehaviour
 void Start()
 {
     animator = GetComponent<Animator>();
-    animator.SetBool("isHit", false);
+    player = FindObjectOfType<MarioScript>();
     //blockHit = false;
     //animation["Brickk-Bounce"].wrapMode = WrapMode.Once;
 }
@@ -30,18 +35,23 @@ void Start()
  {
     // If the collider is entered by player tage the
 
+
     if (collider.transform.CompareTag("Player"))
         {
             //blockHit = true;
-           // GetComponent<Animation>().Play("Brick-Bounce"); 
-            animator.SetBool("isHit", true);
+            // GetComponent<Animation>().Play("Brick-Bounce"); 
+            Debug.Log("block hit");
+            if (player.currentHealth == 1)
+            {
+                animator.Play("Hit");
+            }
+            else if (player.currentHealth == 2)
+            {
+                Destroy(gameObject);
+            }
+            
         }
-     else 
-     {
-         //blockHit = false;
-         animator.SetBool("isHit" ,false);
-     }   
-        Debug.Log("block hit");
+   
  }
 
 

@@ -16,11 +16,26 @@ public class GoombaController : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public Sprite deathSprite;
 
+    private bool damagePlayer = true;
+    private bool playerAlive = true;
+
+    private Animator animator;
+
     //METHODS CALLED 
     public MarioScript marioScript;
 
+    //RUNS BEFORE START
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
+
+
+
+
     void Start()
     {
+
         //spriteRenderer = GameObject.GetComponent<SpriteRenderer>();
         //marioScript.ChangeLives();
         rd = GetComponent<Rigidbody2D>();
@@ -41,9 +56,13 @@ public class GoombaController : MonoBehaviour
     {
         MarioScript player = collision.gameObject.GetComponent<MarioScript>();
 
-        if (player != null)
+        if (player != null && damagePlayer)
         {
-           //Debug.Log("Player Hit by Goomba");
+            player.SetScore();
+            player.ForceJump();
+            playerAlive = false;
+            player.ChangeHealth(-1);
+            Debug.Log("Player Hit by Goomba");
            //collision.gameObject.SetActive(false);
            
            // NEEDS TO CALL CHANGE HEALTH gameObject.GetComponent<MarioScript>().ChangeHealth();
@@ -59,6 +78,22 @@ public class GoombaController : MonoBehaviour
     }
 
 
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        MarioScript player = collision.gameObject.GetComponent<MarioScript>();
+
+        if (player != null && playerAlive)
+        {
+            damagePlayer = false;
+      
+            GoombaDeath();
+            //player.ChangeHealth(-1);
+            //Debug.Log("Goomba Damage");
+            //collision.gameObject.SetActive(false);
+
+            // NEEDS TO CALL CHANGE HEALTH gameObject.GetComponent<MarioScript>().ChangeHealth();
+        }
+    }
 
     public void GoombaDamage()
     {
@@ -68,11 +103,12 @@ public class GoombaController : MonoBehaviour
 
     public void GoombaDeath()
     {
+
         Debug.Log("GoombDied");
         //spriteRenderer.sprite = deathSprite;
         //GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
-
-        Destroy(gameObject, 1);
+        animator.SetBool("Alive", false);
+        Destroy(gameObject, 0.5f);
         //Debug.Log("method called");
 
         //Destroy(GetComponent<Rigidbody2D)();

@@ -11,6 +11,7 @@ TagManager:
   - GoombaDamage
   - CameraMove
   - GoombaStomp
+  - DeathZone
   layers:
   - Default
   - TransparentFX

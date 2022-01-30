@@ -60,7 +60,10 @@ public class MarioScript : MonoBehaviour
     //LIVES COMPONETS 
     private int maxLives = 3;
     public int livesCount;
-    //public bool marioAlive;
+
+    //GameOver
+    public static bool isAlive = true;
+    public GameObject gameOverText;
 
    
     //SCORE COMPONETS
@@ -68,7 +71,7 @@ public class MarioScript : MonoBehaviour
 
     //HEALTH / SUPER MARIO VARIABLES    
     public int maxHealth = 2; 
-    public int health;               //{ get {return currentHealth;} }
+    public int currentHealth;               //{ get {return currentHealth;} }
     //int currentHealth; //Dead = 0, smallMario = 1, SuperMario = 2 
 
 
@@ -103,17 +106,19 @@ public class MarioScript : MonoBehaviour
 
 
 
-        animator.SetBool("MarioDeath", false);
-        //GAMESTART STATS
-        health = 1; 
+        
+        //GAMESTART STATS FUNCTIONS FOR HARD RESTET 
+        currentHealth = 1; 
         scoreValue = 0;
         livesCount = maxLives;
+        animator.SetBool("MarioDeath", false);
+        Debug.Log(currentHealth + "/" + maxHealth);
 
 
 
         //lives.text = "Lives "+ livesValue.ToString();
         //Debug.Log();
-        Debug.Log(health);
+        //Debug.Log(currentHealth);
         //if(livesCount > 0 )
         //{
 
@@ -154,9 +159,7 @@ public class MarioScript : MonoBehaviour
         //PLAYER JUMP 
         if (isGrounded == true && Input.GetKeyDown("x") && isJumping == false)
         {
-            isJumping = true;
-            jumpTimeCounter = jumpTime;
-            rd2d.velocity = Vector2.up * jumpForce;
+            ForceJump();
         }
 
         //JUMP HIGHER WHEN HOLD X
@@ -243,6 +246,7 @@ public class MarioScript : MonoBehaviour
             isGrounded = false;
         }
         
+        /*
         //GOOMB STOMPP - calls goomba death animation and score count
         if (collision.gameObject.CompareTag("GoombaStomp"))
         {
@@ -258,16 +262,16 @@ public class MarioScript : MonoBehaviour
             goombaController.GoombaDeath();
             
         }
-
+        */
 
         //MARIO COLLIDING WITH GOOMBA - TRIGGERS CHANGE HEALTH
         if(collision.collider.tag == "GoombaDamage")
         {
             // CHECKS MARIOS HEALTH if he is in small form, trigger death and chagne health
-            if (health == 1)
+            if (currentHealth == 1)
             {
-                MarioDeath();
-                ChangeHealth();
+                //MarioDeath();
+                //ChangeHealth(1);
             }
             //else (marioSize == 2)
            // {
@@ -288,10 +292,18 @@ public class MarioScript : MonoBehaviour
     }
 
 
-/*
+    public void ForceJump()
+    {
+
+        isJumping = true;
+        jumpTimeCounter = jumpTime;
+        rd2d.velocity = Vector2.up * jumpForce;
+    }
+
 
     public void OnTriggerEnter2D (Collider2D collider)
     {
+        /*
         if (collider.transform.CompareTag("GoombaStomp"))
         {
 
@@ -303,18 +315,42 @@ public class MarioScript : MonoBehaviour
 
             Debug.Log("StompWork");
         }
+        */
 
         //CALLING FUNCTION FROM GOOMBA CONTROLLER SCRIPT 
         //goombaController.GoombaDeath();
         //SetScore();
+        if (collider.transform.CompareTag("DeathZone"))
+        {
+            Debug.Log("GameOver");
+            isAlive = false;
+            //SoftReset screen - Display # of lives - freeze times/resets for next - currentScore - Current Coins
+            //gameOverText.SetActive(true);
+            //COROUTINE NOT PLAYING *****                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+            StartCoroutine(Death());
+        }
         
+    }
+
+    IEnumerator Death()
+    {
+        yield return new WaitForSeconds(3);
+        //Load main world Scene 
+        //Debug.Log("GameOver");
     }
    
 
-*/
 
-    public void ChangeHealth()
+
+    public void ChangeHealth(int amount)
     {
+        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+        Debug.Log(currentHealth + "/" + maxHealth);
+
+        //Debug.Log(currentHealth);
+
+
+        /*
         if (health > 0) 
         {
             health = health - 1;
@@ -327,7 +363,8 @@ public class MarioScript : MonoBehaviour
         //{
             //Destroy(player);
         //}
-         Debug.Log(health);
+        */
+         //Debug.Log(health);
     }
 
     public void ChangeLives() //Called when mario takes damage
@@ -366,7 +403,7 @@ public class MarioScript : MonoBehaviour
 
     public void SoftReset()
     {
-        health = 1;
+        currentHealth = 1;
     }
 
 }

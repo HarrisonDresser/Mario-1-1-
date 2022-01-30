@@ -10,7 +10,7 @@ public class GoombaFunctions : MonoBehaviour
     void Start()
     {
 
-        goombaController = GetComponent<GoombaController>();
+        //goombaController = GetComponent<GoombaController>();
     }
 
     // Update is called once per frame

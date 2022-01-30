@@ -1,11 +1,12 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - BlockDestroy
     - CameraController
     - Coin
     - CoinCounter
-    - GoombaControllerPong
-    - Goomba_Controller
+    - GoombaController
+    - GoombaFunctions
     - MarioScript
     - QuestionBlockController
     - pauseScript
@@ -43,6 +44,8 @@ ScriptsOnlyBuild:
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
+    - UnityEngine.UI.CanvasScaler
+    - UnityEngine.UI.GraphicRaycaster
   sceneClasses:
     Assets/Scenes/MainScene.unity:
     - Class: 1
@@ -88,7 +91,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2644}
     - Class: 114
+      Script: {instanceID: 2710}
+    - Class: 114
       Script: {instanceID: 2882}
+    - Class: 114
+      Script: {instanceID: 3118}
     - Class: 114
       Script: {instanceID: 3128}
     - Class: 114
@@ -98,15 +105,17 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3726}
     - Class: 114
-      Script: {instanceID: 4594}
+      Script: {instanceID: 4646}
     - Class: 114
-      Script: {instanceID: 4648}
+      Script: {instanceID: 4682}
     - Class: 114
-      Script: {instanceID: 4684}
+      Script: {instanceID: 4898}
     - Class: 114
-      Script: {instanceID: 4900}
+      Script: {instanceID: 5296}
     - Class: 114
-      Script: {instanceID: 5298}
+      Script: {instanceID: 5432}
+    - Class: 114
+      Script: {instanceID: 5746}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -118,6 +127,10 @@ ScriptsOnlyBuild:
     - Class: 212
       Script: {instanceID: 0}
     - Class: 213
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
       Script: {instanceID: 0}
     - Class: 19719996
       Script: {instanceID: 0}
@@ -316,10 +329,10 @@ ScriptsOnlyBuild:
     className: GraphicRaycaster
   - hash:
       serializedVersion: 2
-      Hash: 8909a3c26158872afbdbad2afda3d604
+      Hash: a54001311a93593d8727dc81202b58f5
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: Goomba_Controller
+    className: GoombaController
   - hash:
       serializedVersion: 2
       Hash: f40fedccd4adbc76605bea6d67537e4b
@@ -418,7 +431,7 @@ ScriptsOnlyBuild:
     className: ContentSizeFitter
   - hash:
       serializedVersion: 2
-      Hash: fe457b4d3375156d51bf6e5e5218f3f6
+      Hash: 976ab7b9bd22b47e51277ff373720461
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MarioScript
@@ -550,13 +563,7 @@ ScriptsOnlyBuild:
     className: SpriteShapeGeometryCache
   - hash:
       serializedVersion: 2
-      Hash: e0e97fe757e2dd6522a770a291816fb3
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: GoombaControllerPong
-  - hash:
-      serializedVersion: 2
-      Hash: 66bca5cc6a18c5298ec75235e56a84d6
+      Hash: 8cef7543078cb94deb1a8d7d928c73dc
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CameraController
@@ -658,6 +665,12 @@ ScriptsOnlyBuild:
     className: TMP_ScrollbarEventHandler
   - hash:
       serializedVersion: 2
+      Hash: 30f3213a6e218a461fa00e428f22d3eb
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BlockDestroy
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.2D.Animation.Runtime.dll
     namespaceName: UnityEngine.U2D.Animation
@@ -674,6 +687,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: ActivationPlayableAsset
+  - hash:
+      serializedVersion: 2
+      Hash: 6d2ab81dd9170ef6b50f2779cd201db4
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GoombaFunctions
   - hash:
       serializedVersion: 2
       Hash: 7ab0e790220bdca831fdd886b339039d
@@ -695,5 +714,5 @@ ScriptsOnlyBuild:
   platform: 19
   scenePathNames:
   - Assets/Scenes/MainScene.unity
-  playerPath: E:/Master Files/UCF Spring 2022/DIG4715 - Game Production/Rough Build
-    V.2/Mario 1-1 DIG4715.exe
+  playerPath: C:/Users/harry/Desktop/mario Test build V.1.0/Test3(480x640)/Mario
+    1-1 DIG4715.exe
