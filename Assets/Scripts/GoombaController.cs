@@ -31,8 +31,6 @@ public class GoombaController : MonoBehaviour
     }
 
 
-
-
     void Start()
     {
 
@@ -52,13 +50,13 @@ public class GoombaController : MonoBehaviour
 
 
 
-    public void OnCollisionStay2D(Collision2D collision)
+    public void OnCollisionStay2D(Collider2D collision)
     {
         MarioScript player = collision.gameObject.GetComponent<MarioScript>();
 
         if (player != null && damagePlayer)
         {
-            player.ForceJump();
+            
             playerAlive = false;
             player.ChangeHealth(-1);
             Debug.Log("Player Hit by Goomba");
@@ -66,39 +64,65 @@ public class GoombaController : MonoBehaviour
            
            // NEEDS TO CALL CHANGE HEALTH gameObject.GetComponent<MarioScript>().ChangeHealth();
         }
+        //if (collision.transform.CompareTag("KoopaShell"))
+        //{
+
+            //Debug.Log("Turn Shell off");
+            //collision.gameObject.SetActive(false);
+        //}
+
 
         //if (collision.transform.CompareTag("Player"))
         //{
-           // collision.gameObject.SetActive(false);
-            //collision.GetComponent<MarioScript>().ChangeHealth();
-            //ChangeLives();
-            //lives.text = "lives " + livesValue.ToString();
-       // }
+        // collision.gameObject.SetActive(false);
+        //collision.GetComponent<MarioScript>().ChangeHealth();
+        //ChangeLives();
+        //lives.text = "lives " + livesValue.ToString();
+        // }
     }
 
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerEnter2D(Collider2D collider)
     {
-        MarioScript player = collision.gameObject.GetComponent<MarioScript>();
+        MarioScript player = collider.gameObject.GetComponent<MarioScript>();
 
         if (player != null && playerAlive)
         {
             damagePlayer = false;
-      
+           // player.ForceJump();
             GoombaDeath();
             player.SetScore(100);
             //player.ChangeHealth(-1);
             //Debug.Log("Goomba Damage");
             //collision.gameObject.SetActive(false);
+            //collision.transform.CompareTag("GoombaDamage")
 
             // NEEDS TO CALL CHANGE HEALTH gameObject.GetComponent<MarioScript>().ChangeHealth();
         }
+
+        if (collider.transform.CompareTag("KoopaShell"))
+        {
+            GoombaDeath();
+            Debug.Log("Goomba hit by KoopaShell");
+            player.SetScore(40);
+        }
+
+
+        /*
+         * 
+         * 
+        if (collider.transform.CompareTag("KoopaShell"))
+        {
+            GoombaDeath();
+            Debug.Log("Goomba hit by KoopaShell");
+            player.SetScore(400);
+            // this.transform.position = new Vector3(0, -1000, 0);
+        }
+        */
+
+
     }
 
-    public void GoombaDamage()
-    {
-        //Debug.Log("method called");
-    }
 
 
     public void GoombaDeath()

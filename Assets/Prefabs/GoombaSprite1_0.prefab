@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &793516044
 Transform:
   m_ObjectHideFlags: 0
@@ -47,7 +47,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0032086372, y: 0.21286392}
+  m_Offset: {x: -0.0073361397, y: 0.16333401}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -58,7 +58,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.55330944, y: 0.07446623}
+  m_Size: {x: 0.6606245, y: 0.07446647}
   m_EdgeRadius: 0
 --- !u!212 &215529918633561639
 SpriteRenderer:
@@ -140,7 +140,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -160,7 +160,8 @@ GameObject:
   - component: {fileID: 1437973046}
   - component: {fileID: 1437973047}
   - component: {fileID: 7800920113032284215}
-  - component: {fileID: 1318935212}
+  - component: {fileID: 670591417}
+  - component: {fileID: 258736060}
   m_Layer: 0
   m_Name: GoombaSprite1_0
   m_TagString: GoombaDamage
@@ -177,7 +178,7 @@ Transform:
   m_GameObject: {fileID: 498811554381837522}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.78, y: -2.68, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.3624, y: 1.3624, z: 1.3624}
   m_Children:
   - {fileID: 793516044}
   m_Father: {fileID: 0}
@@ -287,7 +288,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0013175011, y: -0.11732936}
+  m_Offset: {x: 0.0013175011, y: -0.1402897}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -298,7 +299,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9328623, y: 0.37030792}
+  m_Size: {x: 0.9328623, y: 0.32438725}
   m_EdgeRadius: 0
 --- !u!114 &7800920113032284215
 MonoBehaviour:
@@ -318,17 +319,55 @@ MonoBehaviour:
   spriteRenderer: {fileID: 6597298453514521850}
   deathSprite: {fileID: 3129186650607056963, guid: a291317934d1173448e6b0a408934552, type: 3}
   marioScript: {fileID: 0}
---- !u!114 &1318935212
-MonoBehaviour:
+--- !u!61 &670591417
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 498811554381837522}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12c4250e376034846b8c39a43a90c9fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  marioScript: {fileID: 0}
-  goombaController: {fileID: 7800920113032284215}
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.015052021, y: 0.21662089}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.9375, y: 0.609375}
+    newSize: {x: 0.9375, y: 0.609375}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.74745274, y: 0.18104023}
+  m_EdgeRadius: 0
+--- !u!61 &258736060
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 498811554381837522}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.00043210387, y: 0.20752826}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.9375, y: 0.609375}
+    newSize: {x: 0.9375, y: 0.609375}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.772724, y: 0.18516253}
+  m_EdgeRadius: 0

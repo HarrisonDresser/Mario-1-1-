@@ -60,11 +60,13 @@
     <Compile Include="Assets\Scripts\MushroomCollectible.cs" />
     <Compile Include="Assets\Scripts\MarioScript.cs" />
     <Compile Include="Assets\Scripts\Timer.cs" />
+    <Compile Include="Assets\Scripts\QuestionBlockCoins.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\Coin.cs" />
     <Compile Include="Assets\Scripts\BlockDestroy.cs" />
     <Compile Include="Assets\Scripts\GoombaFunctions.cs" />
-    <Compile Include="Assets\Scripts\QuestionBlockCoins.cs" />
+    <Compile Include="Assets\Scripts\KoopaController.cs" />
+    <Compile Include="Assets\Scripts\KoopaShell.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

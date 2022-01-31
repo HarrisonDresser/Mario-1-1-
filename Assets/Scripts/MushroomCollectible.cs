@@ -6,7 +6,7 @@ public class MushroomCollectible : MonoBehaviour
 {
     // Start is called before the first frame update
     private MarioScript marioScript;
-    public GameObject gameObject;
+    //public GameObject gameObject;
 
 
     float LeftPoint = -10f;
@@ -20,13 +20,12 @@ public class MushroomCollectible : MonoBehaviour
 
     void Start()
     {
-        
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-        
 
         if (Direction == true)
         {
@@ -54,23 +53,19 @@ public class MushroomCollectible : MonoBehaviour
     }
 
 
-
-
     void OnTriggerEnter2D(Collider2D collider)
+    {
+
+        MarioScript player = collider.gameObject.GetComponent<MarioScript>();
+
+
+        if (player != null)
         {
+            this.transform.position = new Vector3(0, -1000, 0);
 
-            MarioScript player = collider.gameObject.GetComponent<MarioScript>();
+        }  
 
-            if (player != null)
-            {
-                this.transform.position = new Vector3(0, -1000, 0);
-                //TRIGGER NEW MARIO ANIMATION CONTROLLER OR SET BOOL TO TRUE FOR MARIO SIZE = Super
-                player.ChangeHealth(1);
-                player.SetScore(1000);
-                gameObject.SetActive(false);
-            }
-
-           // Debug.Log("Object that entered the trigger : " + collider);
-        }
+        // Debug.Log("Object that entered the trigger : " + collider);
+    }
 
 }

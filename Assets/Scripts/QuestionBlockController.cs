@@ -42,7 +42,7 @@ public class QuestionBlockController : MonoBehaviour
         Debug.Log("Player Contact with QBlock");
         if (isHit == false)
         {
-            Invoke("Delay", 1);
+            Invoke("Delay", 0.5f);
             animator.Play("Qblock_Bounce");
             isHit = true;
         }

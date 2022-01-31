@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 1287360512}
   m_Layer: 0
   m_Name: SuperMario
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -288,8 +288,8 @@ MonoBehaviour:
   lowJumpMultipler: 6
   animator: {fileID: 1438033322751660208}
   livesCount: 0
+  superMario: {fileID: 1287360512}
   gameOverText: {fileID: 0}
-  SuperMario: {fileID: 8657888072364030506}
   maxHealth: 2
   currentHealth: 0
 --- !u!95 &1438033322751660208
