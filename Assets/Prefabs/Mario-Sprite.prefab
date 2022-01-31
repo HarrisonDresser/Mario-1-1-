@@ -60,6 +60,63 @@ Transform:
   m_Father: {fileID: 8657888072364030508}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6668812620958330341
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 159864798975120104}
+  - component: {fileID: 1287360512}
+  m_Layer: 0
+  m_Name: SuperMario
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &159864798975120104
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6668812620958330341}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8657888072364030508}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1287360512
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6668812620958330341}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.002375126, y: -0.5011029}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.8052578, y: 1.4987276}
+  m_EdgeRadius: 0
 --- !u!1 &8657888072364030506
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,6 +153,7 @@ Transform:
   m_Children:
   - {fileID: 1451159490}
   - {fileID: 19553500}
+  - {fileID: 159864798975120104}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -184,7 +242,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.02642107, y: -0.0507015}
+  m_Offset: {x: -0.023902655, y: -0.04703772}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -195,7 +253,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6472206, y: 0.8313639}
+  m_Size: {x: 0.65225744, y: 0.8441832}
   m_EdgeRadius: 0
 --- !u!114 &8657888072364030509
 MonoBehaviour:
@@ -211,25 +269,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goombaController: {fileID: 0}
   speed: 6
-  jumpForce: 7
+  jumpForce: 7.5
   velocity: {x: 0, y: 0}
   feetPos: {fileID: 19553500}
   checkRadius: 0.3
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
+  wallMask:
+    serializedVersion: 2
+    m_Bits: 0
   headPos: {fileID: 1451159490}
   WhatIsCeiling:
     serializedVersion: 2
     m_Bits: 0
-  jumpTime: 0.6
-  fallMultiplier: 5
-  lowJumpMultipler: 5
+  jumpTime: 0.5
+  fallMultiplier: 7
+  lowJumpMultipler: 6
   animator: {fileID: 1438033322751660208}
   livesCount: 0
-  marioAlive: 0
+  gameOverText: {fileID: 0}
+  SuperMario: {fileID: 8657888072364030506}
   maxHealth: 2
-  health: 0
+  currentHealth: 0
 --- !u!95 &1438033322751660208
 Animator:
   serializedVersion: 3

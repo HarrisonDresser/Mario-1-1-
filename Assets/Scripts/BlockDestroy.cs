@@ -13,8 +13,7 @@ public class BlockDestroy : MonoBehaviour
  
     // Start is called before the first frame update
      public Animator animator;
-    private MarioScript player;
-
+     private MarioScript player;
 
 
 
@@ -47,7 +46,7 @@ void Start()
             }
             else if (player.currentHealth == 2)
             {
-                Destroy(gameObject);
+                Destroy(gameObject, 0.2f);
             }
             
         }

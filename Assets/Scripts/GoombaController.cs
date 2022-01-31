@@ -58,7 +58,6 @@ public class GoombaController : MonoBehaviour
 
         if (player != null && damagePlayer)
         {
-            player.SetScore();
             player.ForceJump();
             playerAlive = false;
             player.ChangeHealth(-1);
@@ -87,6 +86,7 @@ public class GoombaController : MonoBehaviour
             damagePlayer = false;
       
             GoombaDeath();
+            player.SetScore(100);
             //player.ChangeHealth(-1);
             //Debug.Log("Goomba Damage");
             //collision.gameObject.SetActive(false);
@@ -108,7 +108,7 @@ public class GoombaController : MonoBehaviour
         //spriteRenderer.sprite = deathSprite;
         //GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
         animator.SetBool("Alive", false);
-        Destroy(gameObject, 0.5f);
+        Destroy(gameObject, 0.2f);
         //Debug.Log("method called");
 
         //Destroy(GetComponent<Rigidbody2D)();

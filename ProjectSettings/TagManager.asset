@@ -12,6 +12,7 @@ TagManager:
   - CameraMove
   - GoombaStomp
   - DeathZone
+  - Pipe
   layers:
   - Default
   - TransparentFX

@@ -64,6 +64,7 @@ public class MarioScript : MonoBehaviour
     //GameOver
     public static bool isAlive = true;
     public GameObject gameOverText;
+    public BoxCollider2D superMario;
 
    
     //SCORE COMPONETS
@@ -85,6 +86,7 @@ public class MarioScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ChangeHealth(0);
         //CALLED METHODS
         rd2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -94,25 +96,26 @@ public class MarioScript : MonoBehaviour
 
 
         //void SetCount()
-       // {
-           //countText.text = "Count: count.ToString();
-           //if (count >= 20)
-           //{
-                //winTextObject.SetActive(true);
-           //}
-       // }
+        // {
+        //countText.text = "Count: count.ToString();
+        //if (count >= 20)
+        //{
+        //winTextObject.SetActive(true);
+        //}
+        // }
+
+
+        superMario.enabled = false;
 
 
 
-
-
-        
         //GAMESTART STATS FUNCTIONS FOR HARD RESTET 
         currentHealth = 1; 
         scoreValue = 0;
         livesCount = maxLives;
         animator.SetBool("MarioDeath", false);
         Debug.Log(currentHealth + "/" + maxHealth);
+        animator.SetBool("isSuper", false);
 
 
 
@@ -127,6 +130,8 @@ public class MarioScript : MonoBehaviour
     }
     void Update()
     {
+        Debug.Log(isJumping);
+       // Debug.Log(isGrounded);
         //Debug.Log(Input.GetAxis("Horizontal"));
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsGround);
         /////TURN TOWARDS GO
@@ -138,6 +143,7 @@ public class MarioScript : MonoBehaviour
         {
             transform.eulerAngles = new Vector3(0, 180, 0);
         }
+
 
         ////COOL JUMP FALL
         if (rd2d.velocity.y < 0)
@@ -154,6 +160,13 @@ public class MarioScript : MonoBehaviour
         {
             isJumping = false;
             animator.SetBool("Jump", false);
+
+        if(Input.GetKeyUp(KeyCode.X) && currentHealth == 2)
+            {
+                isJumping = false;
+                animator.SetBool("Jump", false);
+                Debug.Log("is Jumping = false");
+            }    
         }
 
         //PLAYER JUMP 
@@ -179,6 +192,15 @@ public class MarioScript : MonoBehaviour
         {
             animator.SetBool("Jump", true);
         }
+
+        
+        if (isGrounded == false && currentHealth == 2)
+        {
+            Debug.Log("Is grounded is False and Current Health is 2");
+            //animator.SetBool("Jump", true);
+            animator.Play("SuperMarioJump");
+        }
+        
 
     }
 
@@ -238,8 +260,10 @@ public class MarioScript : MonoBehaviour
        
         if (collision.collider.tag == "Ground")
         {
-           isGrounded = true;
-           animator.SetBool("Jump", false);
+            isGrounded = true;
+            animator.SetBool("Jump", false);
+            Debug.Log("Jump = False");
+            
         }
         else
         {
@@ -344,9 +368,43 @@ public class MarioScript : MonoBehaviour
 
     public void ChangeHealth(int amount)
     {
+        Debug.Log(currentHealth);
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
         Debug.Log(currentHealth + "/" + maxHealth);
+        
+        //RECIVEING 1 FROM MUSHROOM & -1 from Goomba
+        if (currentHealth == 0)
+        {
+            MarioDeath(); 
+            Debug.Log("Health = 2");
+            
+        }
+        if (currentHealth == 1)
+        {
+            Debug.Log("Health = 1");
+            animator.SetBool("isSuper", false);
+            superMario.enabled = false;
+        }
 
+        if (currentHealth == 2)
+        {
+            Debug.Log("Health = 2");
+            animator.SetBool("isSuper", true);
+            superMario.enabled = true;
+        }
+
+        /*
+        if (currentHealth == 2)
+        {
+            Debug.Log("is Super = True");
+            animator.SetBool("isSuper", true);
+        }
+       
+        else if(currentHealth == 1)
+        {
+            animator.SetBool("isSuper", false);
+        }
+        */
         //Debug.Log(currentHealth);
 
 
@@ -364,7 +422,7 @@ public class MarioScript : MonoBehaviour
             //Destroy(player);
         //}
         */
-         //Debug.Log(health);
+        //Debug.Log(health);
     }
 
     public void ChangeLives() //Called when mario takes damage
@@ -389,9 +447,9 @@ public class MarioScript : MonoBehaviour
 
     }
 
-    public void SetScore()
+    public void SetScore(int score)
     {
-        scoreValue = scoreValue + 100; 
+        scoreValue = scoreValue + score; 
         Debug.Log(scoreValue);
     }
 

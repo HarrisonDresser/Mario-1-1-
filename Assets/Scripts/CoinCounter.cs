@@ -8,14 +8,16 @@ public class CoinCounter : MonoBehaviour
 
     void update() 
     {
-        Debug.Log("Count: " + coinCount);
+
     }
     public void AddCoin()
     {
+        
         coinCount += 1;
         if (coinCount > 99)
         {
             coinCount -= 100;
         }
+        Debug.Log("Count: " + coinCount);
     }
 }

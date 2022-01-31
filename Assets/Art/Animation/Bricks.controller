@@ -61,17 +61,17 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 7306369759078499761}
-    m_Position: {x: -20, y: -80, z: 0}
+    m_Position: {x: 150, y: -70, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7898129112613232497}
-    m_Position: {x: -30, y: 10, z: 0}
+    m_Position: {x: 130, y: -190, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 190, y: 70, z: 0}
-  m_EntryPosition: {x: 20, y: -190, z: 0}
+  m_EntryPosition: {x: -70, y: -100, z: 0}
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 7306369759078499761}
@@ -134,7 +134,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Hit
-  m_Speed: 1.5
+  m_Speed: 1.75
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 4549539840094621883}
